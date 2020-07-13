@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content='width=device-width, initial-scale=1'>
+    <meta name="description" content="Услуги frontend-разработчика. Адаптивная верстке лендинг-страниц и сайтов любой сложности под все браузеры и устройства.">
 
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
@@ -13,8 +14,8 @@
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
-    <link rel="preload" href="fonts/roboto-v20-latin_cyrillic-900.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="fonts/roboto-v20-latin_cyrillic-regular.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/roboto-v20-latin_cyrillic-900.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="fonts/roboto-v20-latin_cyrillic-700.woff2" as="font" type="font/woff2" crossorigin>
 
     <link rel="stylesheet" href="css/normalize.min.css">
@@ -28,8 +29,8 @@
     <script src="javascript/jquery-3.4.1.min.js" defer></script>
     <script src="javascript/modernizr-custom.js" defer></script>
     <script src="javascript/owl.carousel.min.js" defer></script>
-    <script src="javascript/js.min.js" defer></script>
-    
+    <script src="javascript/js.js" defer></script>
+
     <title>Дипломный проект</title>
 </head>
 
@@ -53,7 +54,7 @@
             </nav>
 
             <div class="header__address">
-                <a class="header__address-numb" href="tel:+7(499)995-55-77">
+                <a class="header__address-numb address" href="tel:+7(499)995-55-77">
                     +7 (499) 995-55-77
                 </a>
 
@@ -62,6 +63,18 @@
         </div>
 
         <div class="id-container">
+            <figure class="id-container__illustration">
+                <picture class="id-container__img">
+                    <source media="(max-width: 960px)" type="image/webp" srcset='img/header-bg-sm.webp 1x, img/header-bg.webp 2x'>
+                    
+                    <source type="image/webp" srcset='img/header-bg.webp'>
+                    
+                    <source media="(max-width: 960px)" type="image/png" srcset='img/header-bg-sm.png 1x, img/header-bg.png 2x'>
+                    
+                    <img src="img/header-bg.png" alt="Фотография разработчика">
+                </picture>
+            </figure>
+            
             <div class="fixed-container unfixed-container">
                 <div class="id-container__id">
                     <h1 class="id-container__heading">
@@ -221,6 +234,4 @@
 
         <p class="footer__bottom">&copy;Афанасьева Дарья, 2019 - 2020</p>
     </footer>
-</body>
-
-</html>
+</body></html>

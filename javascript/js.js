@@ -22,33 +22,85 @@ $(function () {
         }
     });
 
-    $('.owl-dot').attr({
-        'aria-label': 'Кнопка навигации по карусели'
-    });
+    const keys = {
+        37: 1,
+        38: 1,
+        39: 1,
+        40: 1
+    };
+
+    function preventDefault(e) {
+        e = e || window.event;
+        if (e.preventDefault)
+            e.preventDefault();
+        e.returnValue = false;
+    }
+
+    function preventDefaultForScrollKeys(e) {
+        if (keys[e.keyCode]) {
+            preventDefault(e);
+            return false;
+        }
+    }
+
+    function disableScroll() {
+        if (window.addEventListener) // older FF
+            window.addEventListener('DOMMouseScroll', preventDefault, false);
+
+        console.log('modernizr', Modernizr.passiveeventlisteners);
+
+        window.addEventListener('wheel', preventDefault,
+            Modernizr.passiveeventlisteners ? {
+                passive: false
+            } : false); // modern standard
+        document.addEventListener('mousewheel', preventDefault,
+            Modernizr.passiveeventlisteners ? {
+                passive: false
+            } : false); // older browsers, IE
+        window.addEventListener('mousewheel', preventDefault,
+            Modernizr.passiveeventlisteners ? {
+                passive: false
+            } : false); // older browsers, IE
+        window.addEventListener('touchmove', preventDefault,
+            Modernizr.passiveeventlisteners ? {
+                passive: false
+            } : false); // mobile
+        document.onkeydown = preventDefaultForScrollKeys;
+    }
+
+    function enableScroll() {
+        if (window.removeEventListener)
+            window.removeEventListener('DOMMouseScroll', preventDefault, false);
+        document.removeEventListener('mousewheel', preventDefault, false);
+        window.removeEventListener('mousewheel', preventDefault, false);
+        window.removeEventListener('wheel', preventDefault, false);
+        window.removeEventListener('touchmove', preventDefault, false);
+        document.onkeydown = null;
+    }
+
+    function disableScrollMob() {
+        let pagePosition = window.scrollY;
+        document.body.classList.add('disable-scroll');
+        document.body.dataset.position = pagePosition;
+        document.body.style.top = -pagePosition + 'px';
+    }
+
+    function enableScrollMob() {
+        let pagePosition = parseInt(document.body.dataset.position, 10);
+        document.body.style.top = 'auto';
+        document.body.classList.remove('disable-scroll');
+        window.scroll({
+            top: pagePosition,
+            left: 0
+        });
+        document.body.removeAttribute('data-position');
+    }
 
     const menuBar = $('.menu-bar');
     const popupMenu = $('.mobile-menu');
     const closeMobMenu = $('.mobile-menu-close');
     const openMobMenu = $('.mobile-menu-btn');
     const topBarElement = $('.header__address');
-    const body = $('body');
-
-    let disableScroll = function () {
-        let pagePosition = window.scrollY;
-        document.body.classList.add('disable-scroll');
-        document.body.dataset.position = pagePosition;
-        document.body.style.top = -pagePosition + 'px';
-        console.log('no');
-    }
-
-    let enableScroll = function () {
-        let pagePosition = parseInt(document.body.dataset.position, 10);
-        document.body.style.top = 'auto';
-        document.body.classList.remove('disable-scroll');
-        window.scroll({top: pagePosition, left: 0});
-        document.body.removeAttribute('data-position');
-        console.log('yes');
-    }
 
     $(openMobMenu).on('click', function () {
         $(popupMenu).slideToggle(200);
@@ -73,7 +125,6 @@ $(function () {
 
     $(callBackBtn).on('click', function (event) {
         event.preventDefault;
-        const outerWidth = 
         $(popup).fadeIn(230, function () {
             $(callBackPopup)
                 .css('display', 'block')
@@ -82,14 +133,20 @@ $(function () {
                     'margin-top': '12%'
                 }, 230)
         });
-        
-                disableScroll();
+
+        const windowHeight = $(window).height();
+        const windowWidth = $(window).width();
+        if (windowHeight < 580) {
+            disableScrollMob();
+        } else {
+            disableScroll();
+        }
     });
-    
-    $('.closebtn').on('click', function (event) {
-        event.preventDefault;
-        enableScroll();
-        $(popup).fadeOut(230, function () {
+
+    $(popup).on('click', function (event) {
+        event.stopImmediatePropagation();
+        if (event.target === this) {
+            $(this).fadeOut(230, function () {
                 $(callBackPopup)
                     .css('display', 'none')
                     .animate({
@@ -97,6 +154,15 @@ $(function () {
                         'margin-top': '7%'
                     }, 230)
             });
+
+            const windowHeight = $(window).height();
+            const windowWidth = $(window).width();
+            if (windowHeight < 580) {
+                enableScrollMob();
+            } else {
+                enableScroll();
+            }
+        }
     });
 
     $(detailesBtn).on('click', function (event) {
@@ -105,16 +171,24 @@ $(function () {
             $(detailesPopup)
                 .css('display', 'block')
                 .animate({
+
                     'opacity': '1',
                     'margin-top': '10%'
                 }, 240)
         });
-        disableScroll();
+
+        const windowHeight = $(window).height();
+        const windowWidth = $(window).width();
+        if (windowHeight < 580) {
+            disableScrollMob();
+        } else {
+            disableScroll();
+        }
     });
 
     $(popup).on('click', function (event) {
+        event.stopImmediatePropagation();
         if (event.target === this) {
-            enableScroll();
             $(this).fadeOut(230, function () {
                 $(detailesPopup)
                     .css('display', 'none')
@@ -124,6 +198,14 @@ $(function () {
                         'margin-top': '7%'
                     }, 240);
             });
+
+            const windowHeight = $(window).height();
+            const windowWidth = $(window).width();
+            if (windowHeight < 580) {
+                enableScrollMob();
+            } else {
+                enableScroll();
+            }
         }
     });
 
