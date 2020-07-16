@@ -144,37 +144,37 @@
     </main>
 
     <aside class="popup">
-        <form action="#" class="popup__form form-popup callback-popup">
+        <form class="popup__form form-popup callback-popup" action="#"  method="post">
             <h2 class="popup__heading">Заказать звонок</h2>
 
             <label class="form-popup__label">Имя:
-                <input type="text" class="form-popup__input" placeholder="Введите Ваше имя...">
+                <input class="form-popup__input" name="name" type="text"  placeholder="Введите Ваше имя...">
             </label>
 
             <label class="form-popup__label">Номер:
-                <input type="text" class="form-popup__input" placeholder="Введите Ваш номер телефона...">
+                <input class="form-popup__input" name="tel" type="text" placeholder="Введите Ваш номер телефона...">
             </label>
 
             <button type="submit" class="form-popup__btn btn-chief-dsgn">Отправить</button>
         </form>
 
-        <form action="#" class="popup__form form-popup detailes-popup">
+        <form class="popup__form form-popup detailes-popup" action="#" method="post">
             <h2 class="popup__heading">Узнать детали</h2>
 
             <label class="form-popup__label">Имя:
-                <input type="text" class="form-popup__input" placeholder="Введите Ваше имя...">
+                <input type="text" class="form-popup__input" name="name" placeholder="Введите Ваше имя...">
             </label>
 
             <label class="form-popup__label">Номер:
-                <input type="text" class="form-popup__input" placeholder="Введите Ваш номер телефона...">
+                <input type="text" class="form-popup__input" name="tel" placeholder="Введите Ваш номер телефона...">
             </label>
 
             <label class="form-popup__label">Email:
-                <input type="email" class="form-popup__input " placeholder="Введите Ваш email...">
+                <input type="email" class="form-popup__input" name="email" placeholder="Введите Ваш email...">
             </label>
 
             <label class="form-popup__label">Вопрос:
-                <textarea name="for-more-detailes" id="popup__question" class="form-popup__input form-popup__textarea" cols="30" rows="10"></textarea>
+                <textarea name="question" id="popup__question" class="form-popup__input form-popup__textarea" cols="30" rows="10"></textarea>
             </label>
 
             <button type="submit" class="form-popup__btn btn-chief-dsgn">Отправить</button>
