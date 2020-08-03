@@ -23,9 +23,11 @@
     <link rel="stylesheet" href="css/owl.carousel.min.css">
 
     <script src="javascript/jquery-3.4.1.min.js" defer></script>
+    <script src="javascript/jquery.maskedinput.min.js" defer></script>
     <script src="javascript/modernizr-custom.js" defer></script>
     <script src="javascript/owl.carousel.min.js" defer></script>
-    <script src="javascript/js.min.js" defer></script>
+<!--    <script src="javascript/jquery.validate.min.js"></script>-->
+    <script src="javascript/js.js" defer></script>
 
     <title>Дипломный проект</title>
 </head>
@@ -62,15 +64,15 @@
             <figure class="id-container__illustration">
                 <picture class="id-container__img">
                     <source media="(max-width: 960px)" type="image/webp" srcset='img/header-bg-sm.webp 1x, img/header-bg.webp 2x'>
-                    
+
                     <source type="image/webp" srcset='img/header-bg.webp'>
-                    
+
                     <source media="(max-width: 960px)" type="image/png" srcset='img/header-bg-sm.png 1x, img/header-bg.png 2x'>
-                    
+
                     <img src="img/header-bg.png" alt="Фотография разработчика">
                 </picture>
             </figure>
-            
+
             <div class="fixed-container unfixed-container">
                 <div class="id-container__id">
                     <h1 class="id-container__heading">
@@ -144,38 +146,42 @@
     </main>
 
     <aside class="popup">
-        <form class="popup__form form-popup callback-popup" action="#"  method="post">
+        <form class="popup__form form-popup callback-popup" action="php/mail.php" method="post">
             <h2 class="popup__heading">Заказать звонок</h2>
 
-            <label class="form-popup__label">Имя:
-                <input class="form-popup__input" name="name" type="text"  placeholder="Введите Ваше имя...">
+            <label class="form-popup__label">Имя*:
+                <input class="form-popup__input" name="name" type="text" placeholder="Введите Ваше имя..." required>
             </label>
 
-            <label class="form-popup__label">Номер:
-                <input class="form-popup__input" name="tel" type="text" placeholder="Введите Ваш номер телефона...">
+            <label class="form-popup__label">Номер*:
+                <input type="tel" class="form-popup__input" name="tel" placeholder="+7 (___) ___ __ __" required>
             </label>
 
-            <button type="submit" class="form-popup__btn btn-chief-dsgn">Отправить</button>
+            <small class="form-popup__condition">*Отмеченные поля обязательны к заполнению</small>
+
+            <button type="submit" class="form-popup__btn btn-chief-dsgn sbmt-callback">Отправить</button>
         </form>
 
-        <form class="popup__form form-popup detailes-popup" action="#" method="post">
+        <form class="popup__form form-popup detailes-popup" action="php/mail.php" method="post">
             <h2 class="popup__heading">Узнать детали</h2>
 
-            <label class="form-popup__label">Имя:
-                <input type="text" class="form-popup__input" name="name" placeholder="Введите Ваше имя...">
+            <label class="form-popup__label">Имя*:
+                <input type="text" class="form-popup__input" name="name" placeholder="Введите Ваше имя..." required>
             </label>
 
             <label class="form-popup__label">Номер:
-                <input type="text" class="form-popup__input" name="tel" placeholder="Введите Ваш номер телефона...">
+                <input type="tel" class="form-popup__input" name="tel" placeholder="+7 (___) ___ __ __">
             </label>
 
-            <label class="form-popup__label">Email:
-                <input type="email" class="form-popup__input" name="email" placeholder="Введите Ваш email...">
+            <label class="form-popup__label">Email*:
+                <input type="email" class="form-popup__input" name="email" placeholder="Введите Ваш email..." required>
             </label>
 
-            <label class="form-popup__label">Вопрос:
-                <textarea name="question" id="popup__question" class="form-popup__input form-popup__textarea" cols="30" rows="10"></textarea>
+            <label class="form-popup__label">Вопрос*:
+                <textarea name="question" id="popup__question" class="form-popup__input form-popup__textarea" cols="30" rows="10" required></textarea>
             </label>
+
+            <small class="form-popup__condition">*Отмеченные поля обязательны к заполнению</small>
 
             <button type="submit" class="form-popup__btn btn-chief-dsgn">Отправить</button>
         </form>
@@ -230,4 +236,6 @@
 
         <p class="footer__bottom">&copy;Афанасьева Дарья, 2019 - 2020</p>
     </footer>
-</body></html>
+</body>
+
+</html>
