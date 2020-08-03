@@ -149,6 +149,10 @@
         <form class="popup__form form-popup callback-popup" action="php/mail.php" method="post">
             <h2 class="popup__heading">Заказать звонок</h2>
 
+            <input type="hidden" name="project_name" value="Имя">
+            <input type="hidden" name="admin_email" value="marshalowl@gmail.com">
+            <input type="hidden" name="form_subject" value="Тема">
+           
             <label class="form-popup__label">Имя*:
                 <input class="form-popup__input" name="name" type="text" placeholder="Введите Ваше имя..." required>
             </label>
@@ -165,6 +169,10 @@
         <form class="popup__form form-popup detailes-popup" action="php/mail.php" method="post">
             <h2 class="popup__heading">Узнать детали</h2>
 
+            <input type="hidden" name="project_name" value="Имя">
+            <input type="hidden" name="admin_email" value="marshalowl@gmail.com">
+            <input type="hidden" name="form_subject" value="Тема">
+           
             <label class="form-popup__label">Имя*:
                 <input type="text" class="form-popup__input" name="name" placeholder="Введите Ваше имя..." required>
             </label>
